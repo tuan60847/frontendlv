@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "762554390246",
+    "project_id": "appdulich-6880e",
+    "storage_bucket": "appdulich-6880e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762554390246:android:7605053fe376ac2e634d27",
+        "android_client_info": {
+          "package_name": "com.example.frontendlv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762554390246-ut0j99qtult0n2rnl4q313o4idmva2b2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGzjPkeglFtO7MVoxUiPIV2N5dKycUmvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762554390246-ut0j99qtult0n2rnl4q313o4idmva2b2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
