@@ -5,6 +5,7 @@ import 'package:frontendlv/models/KhachSan.dart';
 import 'package:frontendlv/values/app_color.dart';
 import 'package:frontendlv/values/app_styles.dart';
 import 'package:frontendlv/widgets/FormKhachKhachSan/itemsManagerKS.dart';
+import 'package:frontendlv/widgets/WidgetDonDatPhong/ItemsBookingRoomByAdmin.dart';
 
 class bodyManageHotel extends StatefulWidget {
   const bodyManageHotel({Key? key, required this.khachSan}) : super(key: key);
@@ -37,7 +38,7 @@ class _bodyManageHotelState extends State<bodyManageHotel> {
         CataloryKSManager(childValue: selectItems,updateParentValue: updateParentValue,),
         Container(
           // child: selectItems==0?itemsManagerKS(khachSan: khachSan):Text("xinchaof")
-            child: selectItems==0?itemsManagerKS(khachSan: khachSan,repairKhachSan: true,):Text("xinchaof")
+            child: selectItems==0?itemsManagerKS(khachSan: khachSan,repairKhachSan: true,):itemsBookingRoomByAdmin(khachSan: khachSan)
         )
       ],
     );

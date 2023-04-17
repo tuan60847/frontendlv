@@ -7,6 +7,7 @@ import 'package:frontendlv/Control/Validate.dart';
 import 'package:frontendlv/models/KhachHang.dart';
 import 'package:frontendlv/pages/home_page.dart';
 import 'package:frontendlv/responsity/KhachHangResponsity.dart';
+import '../models/SharePreferenceKH.dart';
 import '../values/app_assets.dart';
 import '../values/app_color.dart';
 import '../values/app_styles.dart';
@@ -77,6 +78,7 @@ class _Register_s2_pageState extends State<Register_s2_page> {
           // print(khachHang);
           bool a= await  insertKhachHang(khachHang);
           if(a==true){
+            final tam = await SharedPreferencesService.saveKhachHang(khachHang);
             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage(khachHang: khachHang),), (route) => false);
           }
           // print(a?"Thành Công":"Thất Bại");

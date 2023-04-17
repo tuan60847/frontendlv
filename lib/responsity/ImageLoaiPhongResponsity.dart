@@ -1,37 +1,39 @@
 import 'dart:io';
 
-import 'package:frontendlv/models/ImageKhachSan.dart';
+
 import 'package:frontendlv/values/app_http.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<List<ImageKS>> getDataImageKS() async {
-  String urilink = "${HTTP.link}hinhanhkhachsan";
+import '../models/ImageLoaiPhong.dart';
+
+Future<List<ImageLoaiPhong>> getDataImageLoaiPhong() async {
+  String urilink = "${HTTP.link}hinhanhloaiphong";
   final response = await http.get(Uri.parse(urilink));
   if (response.statusCode == 200) {
     final result = jsonDecode(response.body);
     Iterable list = result;
-    return list.map((e) => ImageKS.fromJson(e)).toList();
+    return list.map((e) => ImageLoaiPhong.fromJson(e)).toList();
   } else {
     throw Exception("Fail to load");
   }
 }
 
-Future<ImageKS> getImageKS(String UIDKS) async {
-  String urilink = "${HTTP.link}image/UIDKS/${UIDKS.toString()}";
+Future<List<ImageLoaiPhong>> getImageLoaiPhong(String UIDLoaiPhong) async {
+  String urilink = "${HTTP.link}hinhanhloaiphong/UIDLoaiPhong/${UIDLoaiPhong.toString()}";
   final response = await http.get(Uri.parse(urilink));
   if (response.statusCode == 200) {
     final result = jsonDecode(response.body);
-    // Iterable list = result;
-    return ImageKS.fromJson(result);
+    Iterable list = result;
+    return list.map((e) => ImageLoaiPhong.fromJson(e)).toList();
   } else {
     throw Exception("Fail to load");
   }
 }
 
 
-Future<bool> deleteimageKS(String imageKS) async {
-  String urilink = "${HTTP.link}hinhanhkhachsan/${imageKS}";
+Future<bool> deleteImageLoaiPhong(String imageKS) async {
+  String urilink = "${HTTP.link}hinhanhloaiphong/${imageKS}";
   final response = await http.delete(
     Uri.parse(urilink),
   );
@@ -42,11 +44,11 @@ Future<bool> deleteimageKS(String imageKS) async {
   }
 }
 
-Future<bool> uploadImageKS(String UIDKS,File file) async {
+Future<bool> uploadImageLoaiPhong(int UIDLoaiPhong,File file) async {
   var request = http.MultipartRequest(
-      'POST', Uri.parse('${HTTP.link}image/khachsan/upload'));
+      'POST', Uri.parse('${HTTP.link}image/hinhanhloaiphong/upload'));
 
-  request.fields['UIDKS'] = UIDKS;
+  request.fields['UIDLoaiPhong'] = UIDLoaiPhong.toString();
 
   if (file != null) {
     request.files.add(await http.MultipartFile.fromPath(
@@ -56,7 +58,7 @@ Future<bool> uploadImageKS(String UIDKS,File file) async {
 
   var response = await request.send();
   if (response.statusCode == 201) {
-   return true;
+    return true;
   } else {
     print('Image upload failed with code ${response.statusCode}');
     return false;

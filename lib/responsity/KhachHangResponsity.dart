@@ -98,16 +98,16 @@ Future<bool> insertKhachHang(KhachHang khachHang) async {
   }
 }
 
-Future<bool> update(KhachHang khachHang) async {
+Future<bool> updateKH(KhachHang khachHang) async {
   String urilink = "${HTTP.link}khachhang/${khachHang.email}";
   final response = await http.put(Uri.parse(urilink), body: {
-    "Password": khachHang.password,
-    "HoTen": khachHang.HoTen,
-    "NgaySinh": khachHang.ChuoiNgaySinh,
-    "SDT": khachHang.SDT,
-    "cmnd": khachHang.cmnd,
+    "Password": khachHang.password.toString(),
+    "HoTen": khachHang.HoTen.toString(),
+    "NgaySinh": khachHang.ChuoiNgaySinh.toString(),
+    "SDT": khachHang.SDT.toString(),
+    "cmnd": khachHang.cmnd.toString(),
     "isDatPhong": khachHang.isDatPhong ? 1 : 0,
-    "isAdminKH": "",
+    "isAdminKH": khachHang.isAdminKH.toString(),
   });
   if (response.statusCode == 200) {
     return true;

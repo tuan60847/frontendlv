@@ -1,12 +1,14 @@
-import 'dart:ffi';
+
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:frontendlv/models/ImageKhachSan.dart';
 import 'package:frontendlv/models/KhachSan.dart';
+import 'package:frontendlv/pages/QLLoaiPhong.dart';
 import 'package:frontendlv/responsity/loaiphongResponsity.dart';
 import 'package:frontendlv/values/app_assets.dart';
 import 'package:frontendlv/values/app_styles.dart';
+import 'package:frontendlv/widgets/FormKhachKhachSan/formRepairKhachSan.dart';
 
 import '../../models/loaiphong.dart';
 import '../../responsity/ImageKSReponsity.dart';
@@ -31,7 +33,7 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
   late String HinhAnhsrc;
   bool initPic = false;
   late bool repairKhachSan;
-  List<loaiphong> _loaiphongs = [];
+  List<Loaiphong> _loaiphongs = [];
 
   void _findHA() async {
     try {
@@ -71,7 +73,7 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final height = repairKhachSan ? size.height - 160 : size.height;
-
+    List<String> array= khachSan.DiaChi.split(",");
     return Container(
       height: height * 1,
       child: Column(
@@ -98,9 +100,13 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
                   onTap: () {
                     if (repairKhachSan) {
                       // Navigator.push(context, MaterialPageRoute(builder: (context) => ,))
-                      print("Sửa Phòng");
+                      if(initPic)
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => RepairKhachSan(khachSan: khachSan,UriHinhAnh: _imageKS.src)));
+                      else{
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => RepairKhachSan(khachSan: khachSan)));
+                      }
                     } else {
-                      print("Đặt Phòng");
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => QLLoaiPhongPage(loaiphongs: _loaiphongs, admin: false, UIDKS: khachSan.UIDKS),));
                     }
                   },
                   child: Container(
@@ -148,7 +154,7 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
                         maxLines: 1,
                       ),
                       AutoSizeText(
-                        "${khachSan.DiaChi}",
+                        "${array[0]},ward :${array[1]},District :${array[2]},${array[3]} city",
                         style: AppStyles.h5.copyWith(color: AppColor.textColor),
                         maxLines: 2,
                       )
@@ -158,7 +164,14 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    print("Lưu");
+                    if(repairKhachSan){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => QLLoaiPhongPage(loaiphongs: _loaiphongs, admin: true, UIDKS: khachSan.UIDKS),));
+
+                    }else{
+
+                      print("Lưu");
+                    }
+
                   },
                   child: Container(
                     height: 64,
@@ -166,7 +179,7 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
                     decoration: BoxDecoration(
                         color: AppColor.buttonColorPrimary,
                         borderRadius: BorderRadius.all(Radius.circular(15))),
-                    child: Icon(Icons.book_outlined),
+                    child: repairKhachSan!=true?Icon(Icons.book_outlined):Icon(Icons.list_alt),
                   ),
                 ),
               ],
@@ -181,6 +194,19 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
              alignment: Alignment.centerLeft,
               child: Text(
                 "Number Kind of Room: ${_loaiphongs.length.toString()}",
+                style: AppStyles.h5.copyWith(color: AppColor.textColor),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: height / 45,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Phone Number: ${khachSan.SDT.toString()}",
                 style: AppStyles.h5.copyWith(color: AppColor.textColor),
               ),
             ),

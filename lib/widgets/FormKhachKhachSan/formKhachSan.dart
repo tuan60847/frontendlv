@@ -87,15 +87,16 @@ class _RegisterKhachSanState extends State<RegisterKhachSan> {
         }
       }
       else{
-        String DiaChi ="$Location,ward:$ward,districts:$Distric,city $City";
+        String DiaChi ="$Location,$ward,$Distric,$City";
         KhachSan khachSan= new KhachSan(UIDKS: UIDKS, TenKS: TenKS, DiaChi: DiaChi, SDT: SDT);
         print(khachSan.DiaChi);
-        bool a = await insertKhachHang(khachSan);
+        bool a = await insertKhachSan(khachSan);
 
         if(ImageFile!=null){
           bool xacNhan = await  uploadImageKS(UIDKS,ImageFile!);
           print(xacNhan.toString());
         }
+        Navigator.pop(context);
       }
 
 

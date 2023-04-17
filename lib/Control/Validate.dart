@@ -20,5 +20,32 @@ class Validate {
     final RegExp regex = RegExp(r'^0\d{9,10}$');
     return regex.hasMatch(input);
   }
+  bool isValidPrices(String input){
+    try{
+      double a = double.parse(input);
+      if(a<10000){
+        return false;
+
+      }else
+        return true;
+    }catch(e){
+      return false;
+    }
+
+  }
+
+  bool isValidNumber(String input){
+    try{
+      double a = double.parse(input);
+      if(a<0){
+        return false;
+
+      }else
+        return true;
+    }catch(e){
+      return false;
+    }
+
+  }
 
 }

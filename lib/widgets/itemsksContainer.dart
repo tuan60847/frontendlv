@@ -49,6 +49,7 @@ class _ItemsKSContainerState extends State<ItemsKSContainer> {
   Widget build(BuildContext context) {
     khachSan = widget.khachsan;
     var size = MediaQuery.of(context).size;
+    List<String> array= khachSan.DiaChi.split(",");
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -82,7 +83,7 @@ class _ItemsKSContainerState extends State<ItemsKSContainer> {
                   ),
                   SizedBox(
                     width: size.width * 3 / 4,
-                    child: Text(khachSan.DiaChi.toString(),
+                    child: Text("${array[0]},ward :${array[1]},District :${array[2]},${array[3]} city",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             fontWeight: FontWeight.normal,

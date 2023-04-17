@@ -7,6 +7,7 @@ import 'package:frontendlv/pages/home_page.dart';
 
 
 
+import '../models/SharePreferenceKH.dart';
 import '../values/app_assets.dart';
 import '../values/app_color.dart';
 import '../values/app_styles.dart';
@@ -62,6 +63,7 @@ class _LadingPageState extends State<LadingPage> {
             passwordControler.text="";
           });
         }else{
+          final tam = await SharedPreferencesService.saveKhachHang(khachHang);
           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage(khachHang: khachHang),), (route) => false);
         }
       }catch(e){

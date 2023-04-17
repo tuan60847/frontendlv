@@ -40,7 +40,7 @@ Future<bool> deleteKhachSan(KhachSan khachHang) async {
   }
 }
 
-Future<bool> insertKhachHang(KhachSan khachSan) async {
+Future<bool> insertKhachSan(KhachSan khachSan) async {
   String urilink = "${HTTP.link}khachsan";
   final response =
   await http.post(Uri.parse(urilink), body: {
@@ -59,7 +59,7 @@ Future<bool> insertKhachHang(KhachSan khachSan) async {
   }
 }
 
-Future<bool> update(KhachSan khachSan) async {
+Future<bool> updateKhachsan(KhachSan khachSan) async {
   String urilink = "${HTTP.link}khachsan/${khachSan.UIDKS}";
   final response = await http.put(Uri.parse(urilink), body: {
     "TenKS": khachSan.TenKS.toString(),

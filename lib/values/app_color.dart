@@ -16,6 +16,9 @@ class AppColor{
   static const Color iconColor = Color(0xff56769C);
   static const Color appbarColor = Color(0xff3B608C);
 
+  static const Color greenCheckingButtonColor = Color(0xffCCFFCC);
+  static const Color greenAcpectedButtonColor = Color(0xff00FF00);
+
 
 
   static const Color backGray = Color(0xff777777);

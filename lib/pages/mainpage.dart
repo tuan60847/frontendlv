@@ -7,6 +7,10 @@ import 'package:frontendlv/responsity/KhachSanResponsity.dart';
 import 'package:frontendlv/values/app_assets.dart';
 import 'package:frontendlv/values/app_color.dart';
 import 'package:frontendlv/widgets/itemsksContainer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/SharePreferenceKH.dart';
+import 'DonDatPhongKHPage.dart';
 
 
 class mainPage extends StatefulWidget {
@@ -22,8 +26,10 @@ class _mainPageState extends State<mainPage> {
   late List<KhachSan> listKS=<KhachSan>[];
 
   void _fetchAllKS() async{
+    final a = await getKhachHang(khachHang.email);
     final khachsans= await getDataKS();
     setState(() {
+      khachHang= a;
       listKS= khachsans;
     });
   }
@@ -38,30 +44,48 @@ class _mainPageState extends State<mainPage> {
 
   }
 
+
+
+
   @override
   void initState(){
     // TODO: implement initState
 
     super.initState();
+    khachHang = widget.khachHang;
     _fetchAllKS();
+
+
   }
 
 
   @override
   Widget build(BuildContext context) {
-    khachHang = widget.khachHang;
+
     return Scaffold(
       backgroundColor: AppColor.primaryColor,
       appBar: AppBar(
         backgroundColor: AppColor.appbarColor,
         toolbarHeight: 100,
-        title: Text('Hello ${khachHang.HoTen}',style: TextStyle(color: AppColor.buttonColorPrimary),),
+        title: Text('Hi ${khachHang.HoTen}',style: TextStyle(color: AppColor.buttonColorPrimary),),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(18)),
         ),
         actions: [
+          Visibility(
+            visible: khachHang.isDatPhong,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 4.0),
+              child: IconButton(
+                icon: Icon(Icons.notification_important),
+                onPressed:(){
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => DonDatPhongPage(khachHang: khachHang,),));
+                },
+              ),
+            ),
+          ),
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
+            padding: const EdgeInsets.only(right: 4.0),
             child: IconButton(
               icon: Icon(Icons.hotel),
               onPressed:_enterADMINKS,
