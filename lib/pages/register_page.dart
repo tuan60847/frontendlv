@@ -3,8 +3,10 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:frontendlv/models/ChuKhachSan.dart';
 import 'package:frontendlv/models/KhachHang.dart';
 import 'package:frontendlv/pages/register_s2_page.dart';
+import 'package:frontendlv/responsity/ChuKhachSanResponsity.dart';
 import 'package:frontendlv/responsity/KhachHangResponsity.dart';
 
 
@@ -36,6 +38,8 @@ class _Register_pageState extends State<Register_page> {
   bool isvisiblepasword = true ;
   bool isvisiblerepasword = true;
 
+  bool AdminKS = false;
+
   dynamic sendEmail(String email) async {
     final smtpServer = gmail('tuan60847@gmail.com', 'vipkute517');
 
@@ -56,7 +60,7 @@ class _Register_pageState extends State<Register_page> {
     return code;
   }
   //Trong đó, bạn cần thay đổi các thông tin như địa chỉ email của bạn (your.email@gmail.com), mật khẩu email của bạn (your.password), địa chỉ email người nhận (recipient.email@example.com) và tên người gửi (Your Name) theo đúng thông tin của bạn. Mã xác nhận được tạo ngẫu nhiên bằng hàm Random(), và được đưa vào nội dung email bằng cách sử dụng chuỗi ký tự '$code'. Sau khi gửi email thành công, bạn sẽ nhận được một thông báo trên console.
-void checkRegisterLogin(String Email,String password,String repassword) async{
+void checkRegisterLogin(String Email,String password,String repassword, bool AdminKS) async{
     if(Email.isEmpty||password.isEmpty||repassword.isEmpty){
       setState(() {
         if(Email.isEmpty){
@@ -82,24 +86,33 @@ void checkRegisterLogin(String Email,String password,String repassword) async{
       }
       else {
         if(Validate().isEmail(Email)&&Validate().lenRequire(Email)){
-          try{
-            KhachHang khachHang = await getKhachHang(Email);
-            print(khachHang);
+
+            try {
+              if(AdminKS==false) {
+              KhachHang khachHang = await getKhachHang(Email);
+              print(khachHang);
+            }
+              else{
+                ChuKhachSan chuKhachSan = await getChuKhachSan(Email);
+                print(chuKhachSan);
+              }
             setState(() {
-              ErorEmail="Email was exist";
-              ErorPassword = "";
-              ReErorPassword = "";
-            });
-          } catch(e){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Register_s2_page(Email: Email,Password: password,),));
+                ErorEmail = "Email was exist";
+                ErorPassword = "";
+                ReErorPassword = "";
+              });
+            } catch (e) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Register_s2_page(
+                      Email: Email,
+                      Password: password,
+                      AdminKS: AdminKS,
+                    ),
+                  ));
+            }
           }
-
-
-
-
-
-
-        }
         else {
           if(Validate().lenRequire(Email)==false){
             ErorEmail= "Email is require length 10 character";
@@ -283,7 +296,22 @@ void checkRegisterLogin(String Email,String password,String repassword) async{
               ),
             ),
           ),
-
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 1.0,horizontal: 16),
+            child: Row(
+              children: [
+                Checkbox(
+                  value: AdminKS,
+                  onChanged: (bool? value ){
+                    setState(() {
+                      AdminKS = value!;
+                    });
+                  },
+                ),
+                Text("Check If You Innkeeper " ,style: AppStyles.h5.copyWith(color: AppColor.textColor),),
+              ],
+            ),
+          ),
 
 
 
@@ -292,7 +320,7 @@ void checkRegisterLogin(String Email,String password,String repassword) async{
                 onPressed: (){
                   //Navigator.push(context,MaterialPageRoute(builder: (context) => HomePage()) );
                   // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
-                    checkRegisterLogin(emailControler.value.text,passwordControler.value.text,repasswordControler.value.text);
+                    checkRegisterLogin(emailControler.value.text,passwordControler.value.text,repasswordControler.value.text,AdminKS);
                 },
                 fillColor: AppColor.buttonColorSecond,
                 shape: CircleBorder(),

@@ -169,10 +169,10 @@ class LoaiPhongAdminUser extends StatelessWidget {
                               AppStyles.h4.copyWith(color: AppColor.textColor),
                         ),
                       ),
-                      Text(
-                        ": ${loaiphong.phongConLai}",
-                        style: AppStyles.h4.copyWith(color: AppColor.textColor),
-                      ),
+                      // Text(
+                      //   ": ${loaiphong.phongConLai}",
+                      //   style: AppStyles.h4.copyWith(color: AppColor.textColor),
+                      // ),
                     ],
                   )),
             ),

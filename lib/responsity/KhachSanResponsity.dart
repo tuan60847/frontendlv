@@ -49,7 +49,9 @@ Future<bool> insertKhachSan(KhachSan khachSan) async {
     "DiaChi": khachSan.DiaChi.toString(),
     "isActive": khachSan.isActive.toString(),
     "SDT": khachSan.SDT.toString(),
-
+    "MaDDDL": khachSan.MaDDL.toString(),
+    "Buffet": khachSan.Buffet.toString(),
+    "Wifi": khachSan.Wifi.toString()
   });
   // print(response.body);
   if (response.statusCode == 201) {
@@ -66,6 +68,10 @@ Future<bool> updateKhachsan(KhachSan khachSan) async {
     "DiaChi": khachSan.DiaChi.toString(),
     "isActive": khachSan.isActive.toString(),
     "SDT": khachSan.SDT.toString(),
+    "MaDDDL": khachSan.MaDDL.toString(),
+    "Buffet": khachSan.Buffet.toString(),
+    "Wifi": khachSan.Wifi.toString()
+
   });
   if (response.statusCode == 200) {
     return true;

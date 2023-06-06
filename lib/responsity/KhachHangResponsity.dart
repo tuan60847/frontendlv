@@ -107,7 +107,7 @@ Future<bool> updateKH(KhachHang khachHang) async {
     "SDT": khachHang.SDT.toString(),
     "cmnd": khachHang.cmnd.toString(),
     "isDatPhong": khachHang.isDatPhong ? 1 : 0,
-    "isAdminKH": khachHang.isAdminKH.toString(),
+    // "isAdminKH": khachHang.isAdminKH.toString(),
   });
   if (response.statusCode == 200) {
     return true;

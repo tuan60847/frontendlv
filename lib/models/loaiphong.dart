@@ -5,7 +5,7 @@ class Loaiphong {
   String UIDKS;
   String soGiuong;
   int soLuongPhong;
-  int phongConLai;
+
   bool isMayLanh;
 
   Loaiphong({
@@ -16,7 +16,7 @@ class Loaiphong {
     required this.soGiuong,
     required this.soLuongPhong,
     required this.isMayLanh,
-    this.phongConLai = 0,
+
   });
 
   Map<String, dynamic> toJson() {
@@ -26,7 +26,6 @@ class Loaiphong {
       'Gia': Gia,
       'UIDKS': UIDKS,
       'soGiuong': soGiuong,
-      'phongConLai': phongConLai,
       'isMayLanh': isMayLanh,
     };
   }
@@ -39,7 +38,6 @@ class Loaiphong {
       UIDKS: json["UIDKS"],
       soGiuong: json["soGiuong"],
       soLuongPhong: json["soLuongPhong"],
-      phongConLai: json["phongConLai"],
       isMayLanh: json["isMayLanh"],
     );
   }

@@ -142,16 +142,16 @@ class _itemsCTDDPUserState extends State<itemsCTDDPUser> {
                                       padding: const EdgeInsets.only(left: 30),
                                       child: IconButton(
                                           onPressed: () {
-                                            if(isChecked==0) {
-                                              if (ctddp.soLuongPhong <=
-                                                  loaiphong.phongConLai) {
-                                                setState(() {
-                                                  ctddp.soLuongPhong += 1;
-                                                  ctddp.Tien=loaiphong.Gia*ctddp.SoNgayO*ctddp.soLuongPhong;
-                                                });
-                                              }
-                                              widget.updatectddp(ctddp);
-                                            }
+                                            // if(isChecked==0) {
+                                            //   if (ctddp.soLuongPhong <=
+                                            //       loaiphong.phongConLai) {
+                                            //     setState(() {
+                                            //       ctddp.soLuongPhong += 1;
+                                            //       ctddp.Tien=loaiphong.Gia*ctddp.SoNgayO*ctddp.soLuongPhong;
+                                            //     });
+                                            //   }
+                                            //   widget.updatectddp(ctddp);
+                                            // }
                                           },
                                           icon: Icon(Icons.add)),
                                     )

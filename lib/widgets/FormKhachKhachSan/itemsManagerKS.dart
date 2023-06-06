@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:frontendlv/models/ImageKhachSan.dart';
 import 'package:frontendlv/models/KhachSan.dart';
 import 'package:frontendlv/pages/QLLoaiPhong.dart';
+import 'package:frontendlv/responsity/KhachSanResponsity.dart';
 import 'package:frontendlv/responsity/loaiphongResponsity.dart';
 import 'package:frontendlv/values/app_assets.dart';
 import 'package:frontendlv/values/app_styles.dart';
@@ -35,9 +36,12 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
   late bool repairKhachSan;
   List<Loaiphong> _loaiphongs = [];
 
+  
+
   void _findHA() async {
     try {
       final HAKS = await getImageKS(khachSan.UIDKS);
+
       setState(() {
         _imageKS = HAKS;
         HinhAnhsrc = "${HTTP.imageSrc}${_imageKS.src}";
@@ -69,6 +73,16 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
     _findloaiPhong();
   }
 
+  @override
+  void didChangeDependencies() async{
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+
+    final ks = await getKhachSan(khachSan.UIDKS);
+    setState(() {
+      khachSan=ks;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -146,6 +160,7 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
             child: Row(
               children: [
                 Expanded(
+                  // width: size.width/2,
                   child: Column(
                     children: [
                       AutoSizeText(
@@ -210,7 +225,52 @@ class _itemsManagerKSState extends State<itemsManagerKS> {
                 style: AppStyles.h5.copyWith(color: AppColor.textColor),
               ),
             ),
-          )
+          ),
+          SizedBox(
+            height: height / 45,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Container(
+              alignment: Alignment.center,
+              height: size.height/5,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+                border: Border.all(
+                  color: AppColor.textColor,
+                  width: 1,
+                ),
+                // color: Colors.blue
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Visibility(
+                    visible: khachSan.Buffet,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ImageIcon(AssetImage(AppAssets.Buffet),size: 100,),
+                          Text("Buffet" , style: AppStyles.h4.copyWith(color: AppColor.textColor))
+                        ],
+                      ),
+                  ),
+                  Visibility(
+                    visible: khachSan.Wifi,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ImageIcon(AssetImage(AppAssets.Wifi),size: 100,),
+                          Text("Wifi",style: AppStyles.h4.copyWith(color: AppColor.textColor))
+                        ],
+                      ),
+
+                  ),
+
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

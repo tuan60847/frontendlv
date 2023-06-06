@@ -109,7 +109,7 @@ Future<bool> updateloaiphonghave(Loaiphong loaiphong) async {
     'soGiuong': loaiphong.soGiuong.toString(),
     'soLuongPhong':loaiphong.soLuongPhong.toString(),
     'isMayLanh': loaiphong.isMayLanh.toString(),
-    'phongConLai': loaiphong.phongConLai.toString(),
+
   });
   if (response.statusCode == 200) {
     return true;

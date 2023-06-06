@@ -120,7 +120,7 @@ class _pageLoaiPhongRepairState extends State<pageLoaiPhongRepair> {
           final a = await updateloaiphong(loaiphong);
 
           if (ImageFile != null) {
-            if(dsHinhAnh[0]!=null){
+            if(dsHinhAnh.length<0){
               bool xacNhanXoa= await deleteImageLoaiPhong(dsHinhAnh[0].src);
               print(xacNhanXoa);
             }
@@ -129,7 +129,7 @@ class _pageLoaiPhongRepairState extends State<pageLoaiPhongRepair> {
             print(xacNhan.toString());
           }
           if (ImageFile2 != null) {
-            if(dsHinhAnh[1]!=null){
+            if(dsHinhAnh.length<1){
               bool xacNhanXoa= await deleteImageLoaiPhong(dsHinhAnh[1].src);
               print(xacNhanXoa);
             }
@@ -138,7 +138,7 @@ class _pageLoaiPhongRepairState extends State<pageLoaiPhongRepair> {
             print(xacNhan.toString());
           }
           if (ImageFile3 != null) {
-            if(dsHinhAnh[2]!=null){
+            if(dsHinhAnh.length<2){
               bool xacNhanXoa= await deleteImageLoaiPhong(dsHinhAnh[2].src);
               print(xacNhanXoa);
             }
@@ -156,7 +156,7 @@ class _pageLoaiPhongRepairState extends State<pageLoaiPhongRepair> {
 
   late String UIDKS;
   late Loaiphong loaiphongtam;
-  late List<ImageLoaiPhong> dsHinhAnh;
+  late List<ImageLoaiPhong> dsHinhAnh =[];
 
   _getData() {
     TenLoaiPhongController.text = loaiphongtam.TenLoaiPhong;

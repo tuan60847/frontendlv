@@ -8,7 +8,7 @@ class KhachHang{
   final String SDT;
   late String ChuoiNgaySinh;
   late bool isDatPhong;
-  late String isAdminKH;
+
   DateTime NgaySinh(){
     return CovertEntity().CovertStringtoDate(this.ChuoiNgaySinh);
   }
@@ -20,16 +20,14 @@ class KhachHang{
       'cmnd':cmnd,
       'SDT':SDT,
       'NgaySinh':ChuoiNgaySinh,
-      'isDatPhong':ChuoiNgaySinh,
       'isDatPhong':isDatPhong,
-      'isAdminKH':isAdminKH
     };
   }
 
 
   
   KhachHang({ required this.email,required this.password,required this.HoTen,required this.cmnd,required this.SDT,
-    required this.ChuoiNgaySinh, this.isDatPhong=false, this.isAdminKH=""});
+    required this.ChuoiNgaySinh, this.isDatPhong=false});
 
   factory KhachHang.fromJson(Map<String, dynamic> json){
     return KhachHang(
@@ -40,7 +38,6 @@ class KhachHang{
         SDT:json["SDT"],
         ChuoiNgaySinh:json["NgaySinh"],
         isDatPhong:json["isDatPhong"],
-        isAdminKH:json["isAdminKH"],
     );
 
   }

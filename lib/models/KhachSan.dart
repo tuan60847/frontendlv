@@ -3,9 +3,12 @@ class KhachSan {
   final String TenKS;
   final String DiaChi;
   final String SDT;
+  final int MaDDL;
   final bool isActive;
+  final bool Buffet;
+  final bool Wifi;
 
-  KhachSan({required this.UIDKS,required this.TenKS,required this.DiaChi,required this.SDT, this.isActive=false});
+  KhachSan({required this.UIDKS,required this.TenKS,required this.DiaChi,required this.SDT,required this.MaDDL, this.isActive=false,this.Buffet=false,this.Wifi=false});
 
 
   Map<String, dynamic> toJson() {
@@ -15,6 +18,9 @@ class KhachSan {
       'DiaChi':DiaChi,
       'SDT':SDT,
       'isActive':isActive,
+      'MaDDL':MaDDL,
+      'Buffet':Buffet,
+      'Wifi':Wifi,
     };
   }
 
@@ -24,6 +30,9 @@ class KhachSan {
       TenKS: json["TenKS"],
       DiaChi:json["DiaChi"],
       SDT:json["SDT"],
+      MaDDL: json["MaDDDL"],
+      Buffet: json["Buffet"],
+      Wifi: json["Wifi"],
       isActive:json["isActive"],
 
     );

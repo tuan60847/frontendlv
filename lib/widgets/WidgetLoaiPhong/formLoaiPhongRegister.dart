@@ -128,13 +128,13 @@ _resetError(){
             bool xacNhan = await  uploadImageLoaiPhong(b.UIDLoaiPhong,ImageFile3!);
             print(xacNhan.toString());
           }
-          Navigator.pop(context);
+
 
 
         } catch (e) {
           print("lỗi ");
         }
-
+        Navigator.pop(context);
 
       }
     }

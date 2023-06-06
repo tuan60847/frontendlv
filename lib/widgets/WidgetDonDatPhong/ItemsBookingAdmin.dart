@@ -40,7 +40,7 @@ class _ItemsBookingAdminState extends State<ItemsBookingAdmin> {
       final tam = await getCTDDPByMaDP(_donDatPhong.UIDDatPhong);
       tam.forEach((element) async {
         final a = await getLoaiPhong(element.UIDLoaiPhong);
-        a.phongConLai=a.phongConLai-element.soLuongPhong;
+        // a.phongConLai=a.phongConLai-element.soLuongPhong;
         final b = await updateloaiphonghave(a);
       });
       _donDatPhong.isChecked=2;
@@ -70,7 +70,7 @@ class _ItemsBookingAdminState extends State<ItemsBookingAdmin> {
       final tam = await getCTDDPByMaDP(_donDatPhong.UIDDatPhong);
       tam.forEach((element) async {
         final a = await getLoaiPhong(element.UIDLoaiPhong);
-        a.phongConLai=a.phongConLai+element.soLuongPhong;
+        // a.phongConLai=a.phongConLai+element.soLuongPhong;
         final b = await updateloaiphonghave(a);
       });
       _donDatPhong.isChecked=5;

@@ -21,6 +21,7 @@ class _adminKH_PageState extends State<adminKH_Page> {
   late String UIDKS;
   late KhachSan khachSan;
   bool isRegisterKH= false;
+
   void _getKhachSanitem() async  {
     try{
       KhachSan ks = await getKhachSan(UIDKS);
@@ -34,6 +35,7 @@ class _adminKH_PageState extends State<adminKH_Page> {
     }
 
   }
+
 
 
 

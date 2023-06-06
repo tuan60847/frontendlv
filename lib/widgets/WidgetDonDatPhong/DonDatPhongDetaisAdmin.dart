@@ -76,7 +76,7 @@ class _DonDatPhongPageDetailsState extends State<DonDatPhongPageDetails> {
     if (donDatPhong.isChecked == 1) {
       _dsCTDDP.forEach((element) async {
         final a = await getLoaiPhong(element.UIDLoaiPhong);
-        a.phongConLai = a.phongConLai - element.soLuongPhong;
+        // a.phongConLai = a.phongConLai - element.soLuongPhong;
         final b = await updateloaiphonghave(a);
       });
       donDatPhong.isChecked = 2;
@@ -93,7 +93,7 @@ class _DonDatPhongPageDetailsState extends State<DonDatPhongPageDetails> {
     }else if (donDatPhong.isChecked == 3) {
       _dsCTDDP.forEach((element) async {
         final a = await getLoaiPhong(element.UIDLoaiPhong);
-        a.phongConLai = a.phongConLai + element.soLuongPhong;
+        // a.phongConLai = a.phongConLai + element.soLuongPhong;
         final b = await updateloaiphonghave(a);
       });
       donDatPhong.isChecked = 5;
@@ -109,7 +109,7 @@ class _DonDatPhongPageDetailsState extends State<DonDatPhongPageDetails> {
     if (donDatPhong.isChecked != 0) {
       _dsCTDDP.forEach((element) async {
         final a = await getLoaiPhong(element.UIDLoaiPhong);
-        a.phongConLai = a.phongConLai + element.soLuongPhong;
+        // a.phongConLai = a.phongConLai + element.soLuongPhong;
         final b = await updateloaiphonghave(a);
       });
       donDatPhong.isChecked = 5;
