@@ -33,7 +33,7 @@ class _itemBookingManagerState extends State<itemBookingManager> {
   TextEditingController ngaydatPhongControler = new TextEditingController();
   bool visbleKS = false;
   List<String> diachi = [];
-  late List<CTDDP> _dsCTDDP;
+  List<CTDDP> _dsCTDDP =<CTDDP>[]  ;
   String GiaTien ="";
   String ErrorNgayDatPhong="";
 
@@ -349,7 +349,18 @@ class _itemBookingManagerState extends State<itemBookingManager> {
         ),
         Container(
           height: 200,
-          child: ListView.builder(itemCount: _dsCTDDP.length,itemBuilder: (context, index) => itemsCTDDPUser(ctddp: _dsCTDDP[index], isChecked: donDatPhong.isChecked, updatectddp: updatectddp,)),
+          child: ListView.builder(itemCount: _dsCTDDP.length,itemBuilder: (context, index) {
+            if(_dsCTDDP.length<0){
+            return Text("No Data");
+            }
+            else {
+                  return itemsCTDDPUser(
+                      ctddp: _dsCTDDP[index],
+                      isChecked: donDatPhong.isChecked,
+                      updatectddp: updatectddp);
+                }
+
+              }),
         ),
         Visibility(
           visible: donDatPhong.isChecked!=5?true:false,

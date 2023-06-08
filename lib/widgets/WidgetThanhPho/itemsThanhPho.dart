@@ -6,6 +6,7 @@ import 'package:frontendlv/values/app_assets.dart';
 import 'package:frontendlv/values/app_color.dart';
 import 'package:frontendlv/values/app_http.dart';
 import 'package:frontendlv/values/app_styles.dart';
+import 'package:frontendlv/widgets/WidgetThanhPho/PageThanhPhoDetail.dart';
 
 import '../../models/ThanhPho.dart';
 
@@ -41,12 +42,7 @@ class _itemsThanhPhoState extends State<itemsThanhPho> {
       padding: const EdgeInsets.all(5.0),
       child: InkWell(
         onTap: (){
-          print(thanhPho.TenTP);
-          if(_list.length>0){
-            print(HTTP.imageSrc+_list[0].src);
-          }else{
-            print(_list.length);
-          }
+          Navigator.push(context, MaterialPageRoute(builder: (context) => PageThanhPhoDetails(thanhPho: thanhPho,listImageTP: _list),));
           
         },
         child: Container(

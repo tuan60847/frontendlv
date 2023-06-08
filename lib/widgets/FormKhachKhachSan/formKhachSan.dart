@@ -44,11 +44,11 @@ class _RegisterKhachSanState extends State<RegisterKhachSan> {
   bool HavingWifi = false;
 
 
-  late ThanhPho selecttp = ThanhPho(MaTP: 1, TenTP: 'Hà Nội');
+  late ThanhPho selecttp = ThanhPho(MaTP: 1, TenTP: 'Hà Nội',Mota: "");
   late List<ThanhPho> thanhphos = [
     selecttp,
-    ThanhPho(MaTP: 2, TenTP: ''),
-    ThanhPho(MaTP: 3, TenTP: ''),
+    ThanhPho(MaTP: 2, TenTP: '',Mota: ""),
+    ThanhPho(MaTP: 3, TenTP: '',Mota: ""),
   ];
 
   late DiaDiemDuLich diaDiemDuLich = DiaDiemDuLich(

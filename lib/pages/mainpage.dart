@@ -11,6 +11,7 @@ import 'package:frontendlv/responsity/ThanhPhoResponsity.dart';
 import 'package:frontendlv/values/app_assets.dart';
 import 'package:frontendlv/values/app_color.dart';
 import 'package:frontendlv/values/app_styles.dart';
+import 'package:frontendlv/widgets/WidgetThanhPho/PageShowMoreTP.dart';
 import 'package:frontendlv/widgets/WidgetThanhPho/itemsThanhPho.dart';
 import 'package:frontendlv/widgets/itemsksContainer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,16 +31,20 @@ class _mainPageState extends State<mainPage> {
   late KhachHang khachHang;
   late List<KhachSan> listKS = <KhachSan>[];
   late List<ThanhPho> listTP = <ThanhPho>[];
+  late List<ThanhPho> TPs = <ThanhPho>[];
 
   void _fetchAllKS() async {
     final a = await getKhachHang(khachHang.email);
     List<KhachSan> khachsans = await getDataKS();
     khachsans = checkKS(khachsans);
     List<ThanhPho> thanhphos = await getDataThanhpho();
+    List<ThanhPho> citys = thanhphos;
     thanhphos = checkTP(thanhphos);
+
 
     setState(() {
       khachHang = a;
+      TPs = citys;
       listKS = khachsans;
       listTP = thanhphos;
     });
@@ -204,7 +209,7 @@ class _mainPageState extends State<mainPage> {
                         padding: const EdgeInsets.all(5.0),
                         child: InkWell(
                           onTap: () {
-                            print("Next");
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => PageShowMoreThanhPho(thanhphos: TPs),));
                           },
                           child: Container(
                             height: size.height,
@@ -244,8 +249,9 @@ class _mainPageState extends State<mainPage> {
                   }),
             ),
             Container(
-              height: 150,
+              height: size.height/2-5,
               child: ListView.builder(
+
                 itemCount: listKS.length,
                 itemBuilder: (context, index) {
                   return ItemsKSContainer(
